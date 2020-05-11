@@ -1,7 +1,7 @@
 module Enumerable
   def my_each
-
     return enum_for unless block_given?
+
     for x in self
       yield(x)
     end
@@ -9,8 +9,8 @@ module Enumerable
   end
 
   def my_each_with_index
-
     return enum_for unless block_given?
+
     x =0
     for y in self
       yield(x,y)
@@ -19,8 +19,8 @@ module Enumerable
   end
 
   def my_select
-
     return enum_for unless block_given?
+
     new_array = []
     my_each do |x|
       if yield(x)
@@ -31,8 +31,8 @@ module Enumerable
   end
 
   def my_all?
-
     return enum_for unless block_given?
+
     count = 0
     my_each do |x|
     count +=1 if yield(x)
@@ -45,8 +45,8 @@ module Enumerable
   end
 
   def my_any?
-
     return enum_for unless block_given?
+
     count = 0
     my_each do |x|
     count +=1 if yield(x)
@@ -59,8 +59,8 @@ module Enumerable
   end
 
   def my_count
-
     return enum_for unless block_given?
+
     count = 0
     my_each do |x|
       count += 1 if yield(x)
@@ -69,8 +69,8 @@ module Enumerable
   end
 
   def my_none?
-
     return enum_for unless block_given?
+
     count = 0
     my_each do |x|
     count +=1 if yield(x)
@@ -90,8 +90,8 @@ module Enumerable
       elsif $my_proc.is_a? Proc
         new_array.push(my_proc.call(x))
       else
-
         return enum_for unless block_given?
+        
       end
     end
     return new_array
