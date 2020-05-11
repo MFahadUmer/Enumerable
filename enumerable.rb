@@ -35,10 +35,10 @@ module Enumerable
     my_each do |x|
       count += 1 if yield(x)
     end
-    if (count == self.length)
-     true
+    if count == self.length
+      true
     else
-     false
+      false
     end
   end
 
@@ -71,9 +71,9 @@ module Enumerable
 
     count = 0
     my_each do |x|
-      count +=1 if yield(x)
+      count += 1 if yield(x)
     end
-    if count == 0
+    if count.is_zero?
       true
     else
       false
@@ -109,7 +109,6 @@ module Enumerable
     end
     x
   end
-
 end
 
 def multiply_els(args)
