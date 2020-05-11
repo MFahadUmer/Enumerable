@@ -35,7 +35,7 @@ module Enumerable
     my_each do |x|
       count += 1 if yield(x)
     end
-    return count == length ? true : false
+    count == length
   end
 
   def my_any?
