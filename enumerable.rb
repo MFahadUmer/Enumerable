@@ -121,18 +121,18 @@ end
 
 my_array = [12,45,67,89,90]
 my_array_string = ["I", "Love", "My", "Country"]
-my_array.my_each{|x| puts x}
-my_array.my_each_with_index{|x, y| puts "Index is #{x}: Value is #{y}"}
-puts my_array.my_select{|x| x > 45}
-puts my_array.my_all?{|x| x > 53}
-puts my_array.my_any?{|x| x > 53}
-puts my_array.my_none?{|x| x > 53}
-puts my_array.my_count{|x| x > 53}
-puts my_array_string.my_map{|x| x.upcase}
-my_proc = Proc.new {|x| x.upcase}
+my_array.my_each { |x| puts x}
+my_array.my_each_with_index { |x, y| puts "Index is #{x}: Value is #{y}"}
+puts my_array.my_select { |x| x > 45}
+puts my_array.my_all? { |x| x > 53}
+puts my_array.my_any? { |x| x > 53}
+puts my_array.my_none? { |x| x > 53}
+puts my_array.my_count { |x| x > 53}
+puts my_array_string.my_map { |x| x.upcase}
+my_proc = Proc.new { |x| x.upcase}
 puts my_array_string.my_map(&my_proc)
 puts my_array_string.my_map
-puts my_array.my_inject{ |sum, n| sum + n }
-puts [2,3,4,5].my_inject{|x, n| x + n }
-puts [2,3,4,5].my_inject(:*)
+puts my_array.my_inject { |sum, n| sum + n }
+puts [2, 3, 4, 5].my_inject { |x, n| x + n }
+puts [2, 3, 4, 5].my_inject(:*)
 multiply_els(my_array)
