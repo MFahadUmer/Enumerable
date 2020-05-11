@@ -23,9 +23,7 @@ module Enumerable
 
     new_array = []
     my_each do |x|
-      if yield(x)
-        new_array.push(x)
-      end
+      new_array.push(x) if yield(x)
     end
     new_array
   end
@@ -35,12 +33,12 @@ module Enumerable
 
     count = 0
     my_each do |x|
-      count +=1 if yield(x)
+      count += 1 if yield(x)
     end
-    if count == self.length
-      return true
+    if (count == self.length)
+     true
     else
-      return false
+     false
     end
   end
 
@@ -49,9 +47,9 @@ module Enumerable
 
     count = 0
     my_each do |x|
-      count +=1 if yield(x)
+      count += 1 if yield(x)
     end
-    if count > 0
+    if count.is_positive?
       true
     else
       false
@@ -73,36 +71,35 @@ module Enumerable
 
     count = 0
     my_each do |x|
-    count +=1 if yield(x)
+      count +=1 if yield(x)
     end
-      if count == 0
-        true
-      else
-        false
-      end
+    if count == 0
+      true
+    else
+      false
+    end
   end
 
-  def my_map(&my_proc)
+  def my_map(my_proc)
     new_array = []
     my_each do |x|
       if block_given?
         new_array.push(yield(x))
-      elsif $my_proc.is_a? Proc
+      elsif my_proc.is_a? Proc
         new_array.push(my_proc.call(x))
       else
         return enum_for unless block_given?
 
       end
     end
-    return new_array
+    new_array
   end
 
   def my_inject(*args)
     x = args[0] if args[0].is_a?(Integer)
     operator = args[0].is_a?(Symbol) ? args[0] : args[1]
     if operator
-      my_each do
-        |n|
+      my_each do |n|
         x = x ? x.send(operator, n) : n
       end
       return x
@@ -110,9 +107,9 @@ module Enumerable
     my_each do |n|
       x = x ? yield(x, n) : n
     end
-    return x
+    x
   end
-  
+
 end
 
 def multiply_els(args)
