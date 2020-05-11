@@ -7,7 +7,6 @@
 ![screenshot](./enumerable-3.png)
 ![screenshot](./enumerable-4.png)
 ![screenshot](./enumerable-5.png)
-![screenshot](./enumerable-6.png)
 
 Additional description about the project and its features.
 
