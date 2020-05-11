@@ -133,6 +133,6 @@ my_proc = Proc.new { |x| x.upcase}
 puts my_array_string.my_map(&my_proc)
 puts my_array_string.my_map
 puts my_array.my_inject { |sum, n| sum + n }
-puts [2, 3, 4, 5].my_inject { |x, n| x + n }
-puts [2, 3, 4, 5].my_inject(:*)
+puts ([2, 3, 4, 5]).my_inject { |x, n| x + n }
+puts ([2, 3, 4, 5]).my_inject(:*)
 multiply_els(my_array)
