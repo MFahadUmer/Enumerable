@@ -11,9 +11,9 @@ module Enumerable
   def my_each_with_index
     return enum_for unless block_given?
 
-    x =0
+    x = 0
     for y in self
-      yield(x,y)
+      yield(x, y)
       x += 1
     end
   end
@@ -24,10 +24,10 @@ module Enumerable
     new_array = []
     my_each do |x|
       if yield(x)
-      new_array.push(x)
+        new_array.push(x)
       end
     end
-    return new_array
+    new_array
   end
 
   def my_all?
@@ -35,13 +35,13 @@ module Enumerable
 
     count = 0
     my_each do |x|
-    count +=1 if yield(x)
+      count +=1 if yield(x)
     end
-      if count == self.length
-        return true
-      else
-        return false
-      end
+    if count == self.length
+      return true
+    else
+      return false
+    end
   end
 
   def my_any?
@@ -49,13 +49,13 @@ module Enumerable
 
     count = 0
     my_each do |x|
-    count +=1 if yield(x)
+      count +=1 if yield(x)
     end
-      if count > 0
-        return true
-      else
-        return false
-      end
+    if count > 0
+      true
+    else
+      false
+    end
   end
 
   def my_count
@@ -65,7 +65,7 @@ module Enumerable
     my_each do |x|
       count += 1 if yield(x)
     end
-    return count
+    count
   end
 
   def my_none?
@@ -76,9 +76,9 @@ module Enumerable
     count +=1 if yield(x)
     end
       if count == 0
-        return true
+        true
       else
-        return false
+        false
       end
   end
 
@@ -91,7 +91,7 @@ module Enumerable
         new_array.push(my_proc.call(x))
       else
         return enum_for unless block_given?
-        
+
       end
     end
     return new_array
