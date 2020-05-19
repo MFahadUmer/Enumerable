@@ -1,19 +1,21 @@
 module Enumerable
   def my_each
     return enum_for unless block_given?
-
-    for x in self
-      yield(x)
+    
+    x = 0
+    while x < self.length
+      yield(self[x])
+      x += 1
     end
-    x
   end
 
   def my_each_with_index
     return enum_for unless block_given?
 
     x = 0
-    for y in self
-      yield(x, y)
+    y=0
+    while x < self.length
+      yield(self[x], x)
       x += 1
     end
   end
@@ -29,23 +31,27 @@ module Enumerable
   end
 
   def my_all?
-    return enum_for unless block_given?
-
     count = 0
     my_each do |x|
-      count += 1 if yield(x)
+      if block_given?
+        count += 1 if yield(x)
+      else
+        count += 1 if x != nil && x != false
+      end
     end
     count == length
   end
 
   def my_any?
-    return enum_for unless block_given?
-
     count = 0
     my_each do |x|
-      count += 1 if yield(x)
+      if block_given?
+        count += 1 if yield(x)
+      else
+        count += 1 if x != nil && x != false
+      end
     end
-    if count.is_positive?
+    if count.positive?
       true
     else
       false
@@ -53,39 +59,42 @@ module Enumerable
   end
 
   def my_count
-    return enum_for unless block_given?
-
     count = 0
     my_each do |x|
-      count += 1 if yield(x)
+      if block_given?
+        count += 1 if yield(x) == true
+      else
+        count += 1
+      end
     end
-    count
+    puts count
   end
 
   def my_none?
-    return enum_for unless block_given?
-
     count = 0
     my_each do |x|
-      count += 1 if yield(x)
+      if block_given?
+        count += 1 if yield(x)
+      else
+        count += 1 if x != nil && x != false
+      end
     end
-    if count.is_zero?
+    if count.zero?
       true
     else
       false
     end
   end
 
-  def my_map(my_proc)
+  def my_map(my_proc= nil)
     new_array = []
     my_each do |x|
-      if block_given?
+      if my_proc == nil && block_given?
         new_array.push(yield(x))
-      elsif my_proc.is_a? Proc
-        new_array.push(my_proc.call(x))
+      elsif my_proc == nil && !block_given?
+        return enum_for
       else
-        return enum_for unless block_given?
-
+        new_array.push(my_proc.call(x))
       end
     end
     new_array
