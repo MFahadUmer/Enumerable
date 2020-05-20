@@ -1,4 +1,4 @@
-# rubocop:disable ClassLength
+# rubocop:disable ModuleLength
 module Enumerable
   def my_each
     return enum_for unless block_given?
@@ -114,7 +114,7 @@ module Enumerable
     x
   end
 end
-# rubocop:enable ClassLength
+# rubocop:enable ModuleLength
 
 def multiply_els(args)
   puts args.my_inject(:*)
