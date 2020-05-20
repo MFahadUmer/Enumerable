@@ -79,8 +79,7 @@ module Enumerable
         count += 1
       end
     end
-    return_value = count == length ? true : false
-    return return_value
+    count == length
   end
 
   def my_map(my_proc = nil)
