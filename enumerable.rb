@@ -1,11 +1,10 @@
 module Enumerable
   def my_each
     return enum_for unless block_given?
-    
-    x = 0
-    while x < self.length
-      yield(self[x])
-      x += 1
+    y = 0
+    while y < length
+      yield(self[y])
+      y += 1
     end
   end
 
@@ -35,8 +34,8 @@ module Enumerable
     my_each do |x|
       if block_given?
         count += 1 if yield(x)
-      else
-        count += 1 if x != nil && x != false
+      elsif x != nil && x != false
+        count += 1
       end
     end
     count == length
@@ -46,9 +45,10 @@ module Enumerable
     count = 0
     my_each do |x|
       if block_given?
-        count += 1 if yield(x)
-      else
-        count += 1 if x != nil && x != false
+        yield(x)
+        count += 1
+      elsif !x == nil && !x == false
+        count += 1
       end
     end
     if count.positive?
@@ -75,8 +75,8 @@ module Enumerable
     my_each do |x|
       if block_given?
         count += 1 if yield(x)
-      else
-        count += 1 if x != nil && x != false
+      elsif !x == nil && !x == false
+        count += 1
       end
     end
     if count.zero?
@@ -86,12 +86,12 @@ module Enumerable
     end
   end
 
-  def my_map(my_proc= nil)
+  def my_map(my_proc = nil)
     new_array = []
     my_each do |x|
-      if my_proc == nil && block_given?
+      if my_proc.nil? && block_given?
         new_array.push(yield(x))
-      elsif my_proc == nil && !block_given?
+      elsif my_proc.nil? && !block_given?
         return enum_for
       else
         new_array.push(my_proc.call(x))
@@ -119,3 +119,5 @@ end
 def multiply_els(args)
   puts args.my_inject(:*)
 end
+[1,2,3,4,5,6,7].my_each{|x| puts x}
+# [1,2,3,4,5,6,7].each{|x| puts x}
