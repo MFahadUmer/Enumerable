@@ -74,13 +74,12 @@ module Enumerable
     count = 0
     my_each do |x|
       if block_given?
-        yield(x)
-        count += 1 
+        count += 1 if yield(x) == true
       elsif !x.nil? && !x == false
         count += 1
       end
     end
-    if count == length
+    if count == self.length
       true
     else
       false
