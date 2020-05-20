@@ -74,13 +74,13 @@ module Enumerable
     count = 0
     my_each do |x|
       if block_given?
-        yield(x) == true
-        count += 1 
+        yield(x)
+        count += 1
       elsif !x.nil? && !x == false
         count += 1
       end
     end
-    count == length ? true : false
+    return true if count == length
   end
 
   def my_map(my_proc = nil)
