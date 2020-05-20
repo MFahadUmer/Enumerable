@@ -34,7 +34,7 @@ module Enumerable
     my_each do |x|
       if block_given?
         count += 1 if yield(x)
-      elsif !x == nil && !x == false
+      elsif !x.nil? && !x == false
         count += 1
       end
     end
@@ -76,7 +76,7 @@ module Enumerable
       if block_given?
         yield(x)
         count += 1 
-      elsif !x == nil && !x == false
+      elsif !x.nil? && !x == false
         count += 1
       end
     end
@@ -120,6 +120,3 @@ end
 def multiply_els(args)
   puts args.my_inject(:*)
 end
-# [1,2,3,4,5,6,7].my_each{|x| puts x}
-puts [1,2,3,4,5,6,nil].my_none?
-puts [1,2,3,4,5,6,nil].none?
