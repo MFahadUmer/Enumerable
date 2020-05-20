@@ -58,16 +58,18 @@ module Enumerable
     end
   end
 
-  def my_count
+  def my_count(number = nil)
     count = 0
     my_each do |x|
-      if block_given?
+      if block_given? && number.nil?
         count += 1 if yield(x) == true
+      elsif !number.nil?
+        count += 1 if x == number
       else
         count += 1
       end
     end
-    puts count
+    return count
   end
 
   def my_none?
