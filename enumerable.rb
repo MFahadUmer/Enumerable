@@ -72,14 +72,15 @@ module Enumerable
 
   def my_none?
     count = 0
-    each do |x|
+    my_each do |x|
       if block_given?
         count += 1 if yield(x) == false
       elsif x.nil? || x == false
         count += 1
       end
     end
-    count == length ? true : false
+    return_value = count == length ? true : false
+    return return_value
   end
 
   def my_map(my_proc = nil)
