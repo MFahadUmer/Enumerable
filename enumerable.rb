@@ -8,6 +8,7 @@ module Enumerable
       yield(self[y])
       y += 1
     end
+    self
   end
 
   def my_each_with_index
@@ -18,6 +19,7 @@ module Enumerable
       yield(self[x], x)
       x += 1
     end
+    self
   end
 
   def my_select
@@ -115,6 +117,9 @@ module Enumerable
   end
 
   def my_inject(*args)
+    if args.is_a?(Range)
+      puts "Yes it is"
+    end
     x = args[0] if args[0].is_a?(Integer)
     operator = args[0].is_a?(Symbol) ? args[0] : args[1]
     if operator
