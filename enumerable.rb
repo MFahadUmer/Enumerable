@@ -1,4 +1,4 @@
-# rubocop:disable Metrics/ModuleLength, Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
+# rubocop:disable Metrics/ModuleLength, Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity, Style/CaseEquality
 module Enumerable
   def my_each
     return enum_for unless block_given?
@@ -89,7 +89,8 @@ module Enumerable
       elsif args[0].is_a?(Regexp)
         my_each { |y| result = false if y.match(args[0]) }
       elsif !block_given? && args.empty?
-        result = if x.nil? || x == false
+        result =
+          if x.nil? || x == false
             true
           else
             false
@@ -128,7 +129,7 @@ module Enumerable
     x
   end
 end
-# rubocop:enable Metrics/ModuleLength, Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
+# rubocop:enable Metrics/ModuleLength, Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity, Style/CaseEquality
 
 def multiply_els(args)
   puts args.my_inject(:*)
