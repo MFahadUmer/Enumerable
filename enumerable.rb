@@ -36,9 +36,9 @@ module Enumerable
       if block_given?
         result = false if yield(x) == false
       elsif !block_given? && !args.empty? && !args[0].is_a?(Regexp)
-        my_each { |x| result = false if not args[0] === x }
+        my_each { |x| result = false unless args[0] === x }
       elsif args[0].is_a?(Regexp)
-        my_each { |x| result = false if not x.match(args[0]) }
+        my_each { |x| result = false unless x.match(args[0]) }
       elsif !block_given? && args.empty?
         result = false if x.nil? || x == false
       end
