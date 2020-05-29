@@ -1,4 +1,4 @@
-# rubocop:disable Metrics/ModuleLength, Metrics/PerceivedComplexity
+# rubocop:disable Metrics/ModuleLength, Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
 module Enumerable
   def my_each
     return enum_for unless block_given?
@@ -36,9 +36,9 @@ module Enumerable
       if block_given?
         result = false if yield(x) == false
       elsif !block_given? && !args.empty? && !args[0].is_a?(Regexp)
-        my_each { |x| result = false unless args[0] === x }
+        my_each { |y| result = false unless args[0] === y }
       elsif args[0].is_a?(Regexp)
-        my_each { |x| result = false unless x.match(args[0]) }
+        my_each { |y| result = false unless y.match(args[0]) }
       elsif !block_given? && args.empty?
         result = false if x.nil? || x == false
       end
@@ -52,9 +52,9 @@ module Enumerable
       if block_given?
         result = true if yield(x) == true
       elsif !block_given? && !args.empty? && !args[0].is_a?(Regexp)
-        my_each { |x| result = true if args[0] === x }
+        my_each { |y| result = true if args[0] === y }
       elsif args[0].is_a?(Regexp)
-        my_each { |x| result = true if x.match(args[0]) }
+        my_each { |y| result = true if y.match(args[0]) }
       elsif !block_given? && args.empty?
         if x.nil? || x == false
         else
@@ -85,15 +85,15 @@ module Enumerable
       if block_given?
         result = false if yield(x) == true
       elsif !block_given? && !args.empty? && !args[0].is_a?(Regexp)
-        my_each { |x| result = false if args[0] === x }
+        my_each { |y| result = false if args[0] === y }
       elsif args[0].is_a?(Regexp)
-        my_each { |x| result = false if x.match(args[0]) }
+        my_each { |y| result = false if y.match(args[0]) }
       elsif !block_given? && args.empty?
-        if x.nil? || x == false
-          result = true
-        else
-          result = false
-        end
+        result = if x.nil? || x == false
+            true
+          else
+            false
+          end
       end
     end
     result
@@ -128,7 +128,7 @@ module Enumerable
     x
   end
 end
-# rubocop:enable Metrics/ModuleLength, Metrics/PerceivedComplexity
+# rubocop:enable Metrics/ModuleLength, Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
 
 def multiply_els(args)
   puts args.my_inject(:*)
