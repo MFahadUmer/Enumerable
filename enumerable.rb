@@ -1,4 +1,4 @@
-# rubocop:disable Metrics/ModuleLength
+# rubocop:disable Metrics/ModuleLength, Metrics/PerceivedComplexity
 module Enumerable
   def my_each
     return enum_for unless block_given?
@@ -38,8 +38,8 @@ module Enumerable
       elsif !block_given? && !args.empty? && !args[0].is_a?(Regexp)
         my_each { |x| result = false if not args[0] === x }
       elsif args[0].is_a?(Regexp)
-        my_each {|x| result = false if not x.match(args[0])}
-      elsif  !block_given? && args.empty?
+        my_each { |x| result = false if not x.match(args[0]) }
+      elsif !block_given? && args.empty?
         result = false if x.nil? || x == false
       end
     end
@@ -54,8 +54,8 @@ module Enumerable
       elsif !block_given? && !args.empty? && !args[0].is_a?(Regexp)
         my_each { |x| result = true if args[0] === x }
       elsif args[0].is_a?(Regexp)
-        my_each {|x| result = true if x.match(args[0])}
-      elsif  !block_given? && args.empty?
+        my_each { |x| result = true if x.match(args[0]) }
+      elsif !block_given? && args.empty?
         if x.nil? || x == false
         else
           result = true
@@ -87,8 +87,8 @@ module Enumerable
       elsif !block_given? && !args.empty? && !args[0].is_a?(Regexp)
         my_each { |x| result = false if args[0] === x }
       elsif args[0].is_a?(Regexp)
-        my_each {|x| result = false if x.match(args[0])}
-      elsif  !block_given? && args.empty?
+        my_each { |x| result = false if x.match(args[0]) }
+      elsif !block_given? && args.empty?
         if x.nil? || x == false
           result = true
         else
@@ -128,7 +128,7 @@ module Enumerable
     x
   end
 end
-# rubocop:enable Metrics/ModuleLength
+# rubocop:enable Metrics/ModuleLength, Metrics/PerceivedComplexity
 
 def multiply_els(args)
   puts args.my_inject(:*)
