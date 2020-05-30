@@ -120,12 +120,12 @@ module Enumerable
     x = args[0] if args[0].is_a?(Integer)
     operator = args[0].is_a?(Symbol) ? args[0] : args[1]
     if operator
-      my_each do |n|
+      each do |n|
         x = x ? x.send(operator, n) : n
       end
       return x
     end
-    my_each do |n|
+    each do |n|
       x = x ? yield(x, n) : n
     end
     x
