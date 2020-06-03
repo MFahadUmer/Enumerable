@@ -33,7 +33,7 @@ describe Enumerable do
 
   describe '#my_each_with_index' do
     it 'Return the value and index of array' do
-      expect(%w[hello world].my_each_with_index { |x , y| }).to eql(%w[hello world])
+      expect(%w[hello world].my_each_with_index { |x, y| }).to eql(%w[hello world])
     end
     it 'Return Enumeraotr' do
       expect([1, 2, 3, 4, 5].my_each_with_index.class).to be([1, 2, 3, 4, 5].select.class)
@@ -42,7 +42,7 @@ describe Enumerable do
 
   describe '#my_select' do
     it 'Return a new array of only even numbers' do
-      expect([1, 2, 3, 4, 5, 6].my_select &:even?).to eql([2, 4, 6])
+      expect([1, 2, 3, 4, 5, 6].my_select(&:even?)).to eql([2, 4, 6])
     end
     it "Return a new array containing elements starting with 'a'" do
       expect(%w[apple orange banana].my_select { |fruit| fruit.start_with? 'a' }).to eql(['apple'])
@@ -102,7 +102,7 @@ describe Enumerable do
       expect([1, 2, 3, 4].my_count(2)).to eql(1)
     end
     it 'Return 4 elements in array are 2' do
-      expect([1, 2, 3, 4].my_count &:even?).to eql(2)
+      expect([1, 2, 3, 4].my_count(&:even?)).to eql(2)
     end
   end
 
@@ -115,7 +115,7 @@ describe Enumerable do
       expect([1, 2, 3, 4, 5].my_map(my_proc)).to eql([3, 4, 5, 6, 7])
     end
     it 'Return a new array of true and false' do
-      expect([1, 2, 3, 4, 5].my_map &:even?).to eql([false, true, false, true, false])
+      expect([1, 2, 3, 4, 5].my_map(&:even?)).to eql([false, true, false, true, false])
     end
     it 'Return Enumerator' do
       expect([1, 2, 3, 4, 5].my_map.class).to be([1, 2, 3, 4, 5].my_map.class)
